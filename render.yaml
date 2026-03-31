@@ -7,13 +7,3 @@ services:
     envVars:
       - key: OPENAI_API_KEY
         sync: false
-```
-
-**`LICENSE`:** Same MIT as before — copy from any previous project and update the name.
-
-**`requirements.txt`:**
-```
-fastapi
-uvicorn
-openai
-python-multipart
