@@ -1,88 +1,68 @@
 'use client'
 
-import Link from 'next/link'
-import { Sparkles, ArrowRight, Shield, Zap, Cpu } from 'lucide-react'
+import React, { useState } from 'react'
+import Hero from '../app/components/hero/Hero'
+import AnalyzeMeeting from '../app//components/analyzer/AnalyzeMeeting'
+import SmartBreakdown from '../app//components/analyzer/SmartBreakdown'
+import FeatureGrid from '../app//components/features/FeatureGrid'
+import HowItWorks from '../app//components/steps/HowItWorks'
+import Button from '../app//components/shared/Button'
+import { ExtractionResponse } from '../types/index'
 
-export default function LandingPage() {
+export default function Home() {
+  const [analysisData, setAnalysisData] = useState<ExtractionResponse | null>(
+    null,
+  )
+
+  // Scroll to results once they are ready
+  const handleComplete = (data: ExtractionResponse) => {
+    setAnalysisData(data)
+    setTimeout(() => {
+      document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })
+    }, 100)
+  }
+
   return (
-    <main className='min-h-screen bg-background text-foreground flex flex-col items-center justify-center p-6 overflow-hidden relative'>
-      {/* 🏛️ Subtle Background - Reduced Blur and Intensity */}
-      <div className='absolute top-1/4 -left-20 w-72 h-72 bg-primary/5 rounded-full blur-[100px]' />
-      <div className='absolute bottom-1/4 -right-20 w-72 h-72 bg-blue-600/5 rounded-full blur-[100px]' />
+    <>
+      <Hero />
 
-      <div className='max-w-2xl w-full text-center space-y-8 relative z-10'>
-        {/* 🏛️ Minimalist Badge */}
-        <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full border border-glass-border bg-glass/50 text-[9px] font-bold tracking-[0.15em] text-primary/80 uppercase'>
-          <Zap size={10} /> Powered by BuildON
-        </div>
+      <AnalyzeMeeting onAnalysisComplete={handleComplete} />
 
-        {/* 🏛️ Hero Section - Scaled Down for Sophistication */}
-        <div className='space-y-3'>
-          <h1 className='uppercase text-4xl md:text-5xl font-black tracking-tight leading-tight'>
-            meeting<span className='text-primary'>.</span>extractor
-          </h1>
-          <p className='text-secondary text-sm md:text-base max-w-lg mx-auto font-medium leading-relaxed opacity-80'>
-            Convert chaotic audio and raw transcripts into
-            <span className='text-foreground'> structured intelligence</span>.
-            The professional standard for high-output governance.
-          </p>
-        </div>
+      {/* Conditionally render results based on API response */}
+      {analysisData && (
+        <section id='results' className='bg-[#ECECEC]'>
+          <SmartBreakdown data={analysisData} />
+        </section>
+      )}
 
-        {/* 🏛️ Professional Intro - Tightened & Focused */}
-        <div className='max-w-md mx-auto py-5 border-y border-glass-border/50'>
-          <p className='text-[11px] text-secondary/70 leading-relaxed font-mono uppercase tracking-wide'>
-            A neural-first engine designed to isolate action items and summarize
-            executive decisions with zero latency.
-            <span className='text-primary/80 ml-1 font-bold'>
-              Verified Precision.
-            </span>
-          </p>
-        </div>
+      <FeatureGrid />
 
-        {/* 🏛️ CTA Group - Refined Button Sizing */}
-        <div className='flex flex-col sm:flex-row gap-3 justify-center items-center pt-2'>
-          <Link
-            href='/extractor'
-            className='group px-7 py-3 bg-primary text-white rounded-xl font-bold text-[11px] tracking-widest flex items-center gap-2 hover:bg-blue-600 transition-all hover:shadow-lg hover:shadow-primary/10'
-          >
-            LAUNCH_TERMINAL
-            <ArrowRight
-              className='group-hover:translate-x-1 transition-transform'
-              size={14}
-            />
-          </Link>
-          <button className='px-7 py-3 border border-glass-border bg-glass/20 rounded-xl font-bold text-[11px] tracking-widest hover:bg-white/5 transition-all text-secondary'>
-            DOCUMENTATION
-          </button>
-        </div>
+      <HowItWorks />
 
-        {/* 🏛️ Tech Specs - Clean & Minimal */}
-        <div className='grid grid-cols-3 gap-4 pt-10 border-t border-glass-border/30 max-w-sm mx-auto'>
-          <div className='space-y-1'>
-            <Cpu className='mx-auto text-primary/40' size={18} />
-            <p className='text-[9px] font-black tracking-widest uppercase'>
-              NEURAL_V4
+      {/* Final CTA Section from Mockup */}
+      <section className='py-20 bg-[#ECECEC] px-6 md:px-16 lg:px-24'>
+        <div className='max-w-[1440px] mx-auto'>
+          <div className='bg-[#D1E5F7] rounded-[3rem] p-16 md:p-24 text-center border border-blue-100/50 shadow-sm'>
+            <h2 className='text-4xl md:text-6xl font-[900] text-[#111111] mb-8 leading-[1.1] tracking-tighter'>
+              Stop Rewatching Meetings <br className='hidden md:block' />
+              Start Taking Action
+            </h2>
+
+            <p className='text-[#3B82F6] font-extrabold text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed'>
+              Let AI Handle The Notes So You Can Focus On Execution
             </p>
-          </div>
-          <div className='space-y-1 border-x border-glass-border/30'>
-            <Shield className='mx-auto text-primary/40' size={18} />
-            <p className='text-[9px] font-black tracking-widest uppercase'>
-              ENCRYPTED
-            </p>
-          </div>
-          <div className='space-y-1'>
-            <Sparkles className='mx-auto text-primary/40' size={18} />
-            <p className='text-[9px] font-black tracking-widest uppercase'>
-              DIRECTOR
-            </p>
+
+            <div className='flex justify-center'>
+              <Button
+                className='bg-[#3B82F6] text-white px-16 py-5 rounded-2xl text-lg font-black shadow-2xl shadow-blue-400/20 hover:scale-105 transition-transform'
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
+                Get started
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* 🏛️ System Footer */}
-      <div className='absolute bottom-6 flex items-center gap-2 text-[7px] font-bold text-secondary/40 tracking-[0.5em] uppercase pointer-events-none'>
-        System_Status: Optimal // Location: Global_Node
-      </div>
-    </main>
+      </section>
+    </>
   )
 }
