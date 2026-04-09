@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'https://meeting-extractor-backend.onrender.com'
+const API_BASE_URL = 'https://api-meeting-extractor.buildoninc.org'
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
