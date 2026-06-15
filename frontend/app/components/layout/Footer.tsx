@@ -38,7 +38,7 @@ export default function Footer() {
             href="/"
             className="text-xl font-black text-slate-900 mb-6 uppercase tracking-tight inline-block"
           >
-            Clutch <span className="text-[#3B82F6]">AI</span>
+            Apex <span className="text-[#3B82F6]">AI</span>
           </Link>
           <p className="text-slate-500 text-sm leading-relaxed font-medium max-w-[200px]">
             From conversation to clear action turn every meeting into structured
