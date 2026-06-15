@@ -14,7 +14,7 @@ export default function Navbar() {
         {/* Logo (Left) */}
         <Link href="/" className="flex items-center gap-1 z-10">
           <span className="text-2xl font-black text-[#111111] uppercase tracking-tight">
-            Clutch <span className="text-[#3B82F6]">AI</span>
+            Apex <span className="text-[#3B82F6]">AI</span>
           </span>
         </Link>
 
