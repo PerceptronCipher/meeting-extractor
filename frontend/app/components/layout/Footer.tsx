@@ -46,7 +46,7 @@ export default function Footer() {
           </p>
           <div className="flex gap-4 mt-8">
             <Link
-              href={"https://x.com/clutchai_"}
+              href={"https://x.com/apexai_i?s=21"}
               className="bg-slate-100 rounded-2xl p-2"
             >
               <FaXTwitter size={24} color="black" />
