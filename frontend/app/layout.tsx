@@ -7,7 +7,7 @@ import Footer from '../app/components/layout/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'CLUTCH AI | Turn Meetings into Action',
+  title: 'APEX AI | Turn Meetings into Action',
   description:
     'Extract summaries, decisions, and action items from your meetings instantly.',
 }
